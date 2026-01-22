@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update listing</title>
+</head>
+<body>
+
+<h2>Update listing</h2>
+
+<form method="post" action="/listings/<%= listing._id %>">
+
+    <label>Enter listing Title:</label>
+    <input type="text" name="title" value="<%= listing.title %>">
+    <br><br>
+
+    <label>Enter listing description:</label>
+    <input type="text" name="description" value="<%= listing.description %>">
+    <br><br>
+
+    <label>Enter listing image Url:</label>
+    <input type="text" name="image" value="<%= listing.image %>">
+    <br><br>
+
+    <label>Enter listing price:</label>
+    <input type="text" name="price" value="<%= listing.price %>">
+    <br><br>
+
+    <label>Enter listing location:</label>
+    <input type="text" name="location" value="<%= listing.location %>">
+    <br><br>
+
+    <label>Enter listing country:</label>
+    <input type="text" name="country" value="<%= listing.country %>">
+    <br><br>
+
+    <button type="submit">Update</button>
+    <form method="post" action="/listings/<%= listing._id %>/delete">
+    <button type="submit">Delete Listing</button>
+</form>
+</form>
+
+</body>
+</html>
