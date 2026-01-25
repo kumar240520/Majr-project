@@ -1,18 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>All listings</title>
-</head>
+<% layout("layouts/Boilerplate.ejs")%>
 <body>
 
-<h2>All listings</h2>
+<h2 class="mb-4">All listings</h2>
 
-<a href="/listings/new">
-    <button>New listing</button>
-</a>
 
-<ul>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 g-3">
+  <% for (let listing of allListings) { %>
+
+    
+    <div class="col ">
+        <a href="/listings/<%= listing._id %>">
+      <div class="card">
+        
+          <img 
+            src="<%= listing.image %>" 
+            class="card-img-top" 
+            alt="Listing image"
+            style="height: 200px; object-fit: cover;"
+          >
+
+          <div class="card-img-overlay">
+           </div>
+        
+
+        <div class="card-body">
+          <h5 class="card-title">
+            <a href="/listings/<%= listing._id %>" class="text-decoration-none">
+              <%= listing.title %>
+            </a>
+          </h5>
+
+          <ul class="list-unstyled mb-0">
+            <li>₹ <%= listing.price.toLocaleString("en-IN") %>/night</li>
+            <li><%= listing.location %></li>
+            
+          </ul>
+        </div>
+      </div>
+      </a>
+    </div>
+    
+  <% } %>
+</div>
+
+
+
+
+<!-- <ul>
     <% for (let listing of allListings) { %>
         <li>
             <a href="/listings/<%= listing._id %>">
@@ -22,12 +57,9 @@
             <a href="/listings/<%= listing._id %>/edit">
                 <button>Update</button>
             </a>
-
            
         </li>
     <% } %>
-</ul>
+</ul> -->
 
 </body>
-</html>
-<!-- hejbdjgv -->
