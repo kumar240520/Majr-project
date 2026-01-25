@@ -33,9 +33,29 @@ app.get("/", (req, res) => {
 
 // INDEX - ALL LISTINGS
 app.get("/listings", async (req, res) => {
-    const allListings = await Listing.find({});
-    res.render("listings/index", { allListings });
+    const alllistings = await Listing.find({});
+    res.render("listings/index", { alllistings });
 });
+
+// SEARCH ROUTE — must be ABOVE /listings/:id
+app.get("/listings/search", async (req, res) => {
+  try {
+    const { location } = req.query;
+
+    const alllistings = await Listing.find({
+      location: { $regex: location, $options: "i" } // case-insensitive
+    });
+
+    // listings already contains _id for each item
+    res.render("listings/index", { alllistings });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Search failed");
+  }
+});
+
+
 
 // TEST DATA
 app.get("/testlistings", async (req, res) => {
@@ -59,18 +79,26 @@ app.get("/listings/new", (req, res) => {
 
 // CREATE LISTING
 app.post("/listings", async (req, res) => {
+  try {
     let newListing = new Listing({
-        title: req.body.title,
-        description: req.body.description,
-        image: req.body.image,
-        price: req.body.price,
-        location: req.body.location,
-        country: req.body.country,
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image,
+      price: req.body.price,
+      location: req.body.location,
+      country: req.body.country,
     });
 
     await newListing.save();
     res.redirect("/listings");
+}
+
+ catch (err) {
+  res.render("listings/new", { error: "Please fill all fields correctly" });
+}
+
 });
+
 
 // EDIT FORM
 app.get("/listings/:id/edit", async (req, res) => {
@@ -84,7 +112,12 @@ app.post("/listings/:id", async (req, res) => {
     const { id } = req.params;
     await Listing.findByIdAndUpdate(id, req.body);
     res.redirect("/listings");
-});
+    
+}
+
+);
+
+
 
 // SHOW SINGLE LISTING
 app.get("/listings/:id", async (req, res) => {
@@ -99,3 +132,4 @@ app.post("/listings/:id/delete", async (req, res) => {
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
 });
+

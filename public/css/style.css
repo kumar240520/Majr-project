@@ -3,6 +3,13 @@ body{
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container{
+    flex: 1;
 }
 
 .fa-regular{
@@ -25,6 +32,12 @@ body{
 .footer-info-links{
     width: 100%;
     text-align: center;
+    
+}
+
+.footer-info-links a{
+    color: black !important;
+    margin-right: 5px;
 }
 
 .footer-info-socials{
@@ -82,4 +95,29 @@ body{
 .card-img-overlay:hover{
     opacity: 0.2;
     background-color: white;
+}
+
+.form-control:hover{
+
+    border: 1px solid black;
+}
+
+.btn1{
+    background-color:crimson !important;
+    border: none !important;
+}
+
+.but {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.but form {
+  margin: 0;
+}
+
+.d-flex{
+    position: relative !important;
+    left: -500px;
 }

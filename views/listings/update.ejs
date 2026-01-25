@@ -1,38 +1,70 @@
-<% layout("layouts/Boilerplate.ejs")%>
+<% layout("layouts/Boilerplate.ejs") %>
+
 <body>
-
-<h2>Update listing</h2>
-
-<form method="post" action="/listings/<%= listing._id %>">
-
-    <label>Enter listing Title:</label>
-    <input type="text" name="title" value="<%= listing.title %>">
+  <div class="row offset-2">
+    <h2>Edit Listing</h2>
     <br><br>
 
-    <label>Enter listing description:</label>
-    <input type="text" name="description" value="<%= listing.description %>">
-    <br><br>
+    <div class="col-8">
 
-    <label>Enter listing image Url:</label>
-    <input type="text" name="image" value="<%= listing.image %>">
-    <br><br>
+      <!-- UPDATE FORM -->
+      <form method="post" action="/listings/<%= listing._id %>">
 
-    <label>Enter listing price:</label>
-    <input type="text" name="price" value="<%= listing.price %>">
-    <br><br>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" name="title" id="title" class="form-control"
+                 placeholder="enter a catchy title" value="<%= listing.title %>">
+        </div>
 
-    <label>Enter listing location:</label>
-    <input type="text" name="location" value="<%= listing.location %>">
-    <br><br>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description:</label>
+          <input type="text" name="description" id="description" class="form-control"
+                 placeholder="enter an engaging description" value="<%= listing.description %>">
+        </div>
 
-    <label>Enter listing country:</label>
-    <input type="text" name="country" value="<%= listing.country %>">
-    <br><br>
+        <div class="mb-3">
+          <label for="image" class="form-label">Image URL:</label>
+          <input type="text" name="image" id="image" class="form-control"
+                 placeholder="enter the link of your place" value="<%= listing.image %>">
+        </div>
 
-    <button type="submit">Update</button>
-    <form method="post" action="/listings/<%= listing._id %>/delete">
-    <button type="submit">Delete Listing</button>
-</form>
-</form>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="mb-3">
+              <label for="price" class="form-label">Price:</label>
+              <input type="text" name="price" id="price" class="form-control"
+                     placeholder="enter the price" value="<%= listing.price %>">
+            </div>
+          </div>
 
+          <div class="col-md-8">
+            <div class="mb-3">
+              <label for="location" class="form-label">Location:</label>
+              <input type="text" name="location" id="location" class="form-control"
+                     placeholder="where is it located" value="<%= listing.location %>">
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="country" class="form-label">Country:</label>
+          <input type="text" name="country" id="country" class="form-control"
+                 placeholder="name of the country" value="<%= listing.country %>">
+        </div>
+
+        <br>
+
+       <div class="d-flex gap-2">
+  <button type="submit" class="btn btn-dark">Update</button>
+
+       </form>
+  <form method="post"
+        action="/listings/<%= listing._id %>/delete"
+        onsubmit="return confirm('Are you sure you want to delete this listing?');">
+    <button type="submit" class="btn btn-danger">Delete Listing</button>
+  </form>
+</div>
+
+    </div>
+  </div>
 </body>

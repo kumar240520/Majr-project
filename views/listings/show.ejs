@@ -1,25 +1,41 @@
 <% layout("layouts/Boilerplate.ejs")%>
 <body>
 
-    <h3>Listing ID: <%= listing._id %></h3>
+    
 
-    <ul>
-        <li><strong>Title:</strong> <%= listing.title %></li>
-        <li><strong>Description:</strong> <%= listing.description %></li>
 
-        <li>
-            <img src="<%= listing.image %>" width="500" height="250" alt="listing image">
-        </li>
+    <div class="offset-3">
+        
+    <div class="card " style="width: 18rem; ">
+        <h3>Listing Details:</h3>
+        
+ <img src="<%= listing.image %>"
+     class="card-img-top mx-auto d-block"
+     alt="listing image"
+     style="width: 40vw; object-fit: cover;">
 
-        <li><strong>Price:</strong> ₹ <%= listing.price.toLocaleString("en-IN") %></li>
-        <li><strong>Location:</strong> <%= listing.location %></li>
-        <li><strong>Country:</strong> <%= listing.country %></li>
-    </ul>
-
-    <form method="post" action="/listings/<%= listing._id %>/delete">
-    <button type="submit">Delete Listing</button>
+  <div class="card-body">
+    <h5 class="card-title"></strong> <%= listing.title %></h5>
+    <p class="card-text"></strong> <%= listing.description %></p>
+    <p class="card-text"></strong> ₹ <%= listing.price.toLocaleString("en-IN") %></p>
+    <p class="card-text"></strong> <%= listing.location %></p>
+    <p class="card-text"></strong> <%= listing.country %></p>
+    
+   <div class="but">
+     <form method="get" action="/listings/<%= listing._id %>/edit">
+    <button type="submit" class="btn btn-dark">Update Listing</button>
 </form>
 
+<form method="post"
+      action="/listings/<%= listing._id %>/delete"
+      onsubmit="return confirm('Are you sure you want to delete this listing?');">
+    <button type="submit" class="btn btn-danger">Delete Listing</button>
+</form>
+</div>
+  </div>
+  </div>
+</div>
 
+  
 </body>
 
