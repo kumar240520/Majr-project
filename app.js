@@ -11,8 +11,18 @@ app.listen(8080, () => {
 });
 
 // DATABASE CONNECTION
+// async function main() {
+//     await mongoose.connect("mongodb://127.0.0.1:27017/Wanderlust");
+//     console.log("database setup complete");
+// }
+// main().catch(err => console.log(err));
+
+
+//vercel app deployment server code
+
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/Wanderlust";
 async function main() {
-    await mongoose.connect("mongodb://127.0.0.1:27017/Wanderlust");
+    await mongoose.connect(dbUrl);
     console.log("database setup complete");
 }
 main().catch(err => console.log(err));
@@ -133,3 +143,4 @@ app.post("/listings/:id/delete", async (req, res) => {
     res.redirect("/listings");
 });
 
+module.exports = app;
