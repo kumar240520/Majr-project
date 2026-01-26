@@ -30,7 +30,7 @@ app.listen(PORT, () => {
 
 // /github deployment server code
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/Wanderlust";
+const dbUrl = process.env.ATLASDB_URL || "mongodb+srv://Hiteshkumar2405:24052004@cluster0.x1cksnq.mongodb.net/Wanderlust?retryWrites=true&w=majority&appName=Cluster0";
 
 async function main() {
     await mongoose.connect(dbUrl);
