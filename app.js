@@ -5,6 +5,16 @@ const Listing = require("./Models/listing.js");
 const ejsMate = require("ejs-mate");
 const path = require("path");
 
+
+
+// Port configuration for Render
+const PORT = process.env.PORT || 8080;
+
+// START SERVER
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
 // ONLY FOR LOCALHOST
 // app.listen(8080, () => {
 //     console.log("server is working fine");
@@ -18,15 +28,15 @@ const path = require("path");
 // main().catch(err => console.log(err));
 
 
-//vercel app deployment server code
+// /github deployment server code
 
-const dbUrl = process.env.ATLASDB_URL;
-if (!dbUrl) throw new Error("ATLASDB_URL not set");
+const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/Wanderlust";
+
 async function main() {
     await mongoose.connect(dbUrl);
     console.log("database setup complete");
 }
-main().catch(err => console.log("err"));
+main().catch(err => console.log(err));
 
 
 // APP CONFIG
@@ -145,4 +155,4 @@ app.post("/listings/:id/delete", async (req, res) => {
     res.redirect("/listings");
 });
 
-module.exports = app;
+// module.exports = app;
