@@ -5,10 +5,10 @@ const Listing = require("./Models/listing.js");
 const ejsMate = require("ejs-mate");
 const path = require("path");
 
-
-app.listen(8080, () => {
-    console.log("server is working fine");
-});
+// ONLY FOR LOCALHOST
+// app.listen(8080, () => {
+//     console.log("server is working fine");
+// });
 
 // DATABASE CONNECTION
 // async function main() {
@@ -20,12 +20,14 @@ app.listen(8080, () => {
 
 //vercel app deployment server code
 
-const dbUrl = process.env.ATLASDB_URL || "mongodb://127.0.0.1:27017/Wanderlust";
+const dbUrl = process.env.ATLASDB_URL;
+if (!dbUrl) throw new Error("ATLASDB_URL not set");
 async function main() {
     await mongoose.connect(dbUrl);
     console.log("database setup complete");
 }
-main().catch(err => console.log(err));
+main().catch(err => console.log("err"));
+
 
 // APP CONFIG
 app.engine("ejs", ejsMate);
