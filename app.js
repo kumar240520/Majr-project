@@ -49,8 +49,12 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // HOME
+// app.get("/", (req, res) => {
+//     res.send("good connection");
+// });
+
 app.get("/", (req, res) => {
-    res.send("good connection");
+    res.redirect("/listings");
 });
 
 // INDEX - ALL LISTINGS
